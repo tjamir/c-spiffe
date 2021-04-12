@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>C-SPIFFE Library: SPIFFE TLS Dial</title>
+<title>C-SPIFFE Library: Continuous Integration (CI)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,55 +64,22 @@ $(function() {
 </div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">SPIFFE TLS Dial </div>  </div>
+<div class="title">Continuous Integration (CI) </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>SPIFFE TLS Dial for C example. </p>
-<h2><a class="anchor" id="autotoc_md64"></a>
-Client object</h2>
-<div class="fragment"><div class="line">err_t err;</div>
-<div class="line">workloadapi_Client *client = workloadapi_NewClient(&amp;err);</div>
-<div class="line">// ...</div>
-<div class="line">workloadapi_Client_defaultOptions(client, NULL);</div>
-<div class="line">// ...</div>
-<div class="line">x509bundle_Set *set = workloadapi_Client_FetchX509Bundles(client, &amp;err);</div>
-</div><!-- fragment --><p> Initialize client and fetch set of X.509 bundles.</p>
-<h2><a class="anchor" id="autotoc_md65"></a>
-Parameters</h2>
-<div class="fragment"><div class="line">x509bundle_Source *bundle_src = x509bundle_SourceFromSet(set);</div>
-<div class="line"> </div>
-<div class="line">spiffeid_TrustDomain td = { &quot;example.org&quot; };</div>
-<div class="line">tlsconfig_Authorizer *authorizer = tlsconfig_AuthorizeMemberOf(td);</div>
-<div class="line"> </div>
-<div class="line">spiffetls_DialMode *mode</div>
-<div class="line">    = spiffetls_TLSClientWithRawConfig(authorizer, bundle_src);</div>
-<div class="line">spiffetls_dialConfig config = { .base_TLS_conf = NULL, .dialer_fd = 0 };</div>
-</div><!-- fragment --><p> Set up dial mode and empty configuration.</p>
-<h2><a class="anchor" id="autotoc_md66"></a>
-Dial and create TLS connection</h2>
-<div class="fragment"><div class="line">SSL *conn = spiffetls_DialWithMode((in_port_t) 4433,</div>
-<div class="line">                                    /*127.0.0.1*/ (in_addr_t) 0x7F000001,</div>
-<div class="line">                                    mode, &amp;config, &amp;err);</div>
-</div><!-- fragment --><p> Dial with port, address with the given mode and configuration. Get a connection object. </p>
-<h2><a class="anchor" id="autotoc_md67"></a>
-Free</h2>
-<p>Don't forget to free allocated objects and close resources. </p><div class="fragment"><div class="line">err = workloadapi_Client_Close(client);</div>
-<div class="line">// ...</div>
-<div class="line">workloadapi_Client_Free(client);</div>
-<div class="line">// ...</div>
-<div class="line">x509bundle_Source_Free(bundle_src);</div>
-<div class="line">tlsconfig_Authorizer_Free(authorizer);</div>
-<div class="line">spiffetls_DialMode_Free(mode);</div>
-<div class="line"> </div>
-<div class="line">const int fd = SSL_get_fd(conn);</div>
-<div class="line">SSL_shutdown(conn);</div>
-<div class="line">SSL_free(conn);</div>
-<div class="line">close(fd);</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md68"></a>
-Compiling</h2>
-<p>Always compile with make.</p>
-<p>Run example: </p><div class="fragment"><div class="line">./c_dial</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+<div class="textblock"><p>Our Continuous Integration pipeline currently runs on Github Actions and is executed on push. As mentioned in <a class="el" href="md_BUILDING.html">BUILDING.md</a>, the whole process runs on a container. The following steps are run in order:</p>
+<ul>
+<li>The project is checked out</li>
+<li>Create a build environment and configure cmake</li>
+<li>Build the project</li>
+<li>Run unit tests</li>
+<li>Generate coverage reports</li>
+<li>Run integration tests</li>
+<li>Upload coverage to code cov</li>
+<li>Verify if current coverage is acceptable for lines and functions</li>
+</ul>
+<p>If any of the above steps fail, the build fails. Any Pull Request with failing builds should be rejected. </p>
+</div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
