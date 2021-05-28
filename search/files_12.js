@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['watch_5fjwt_5fbundles_2ec_1015',['watch_jwt_bundles.c',['../watch__jwt__bundles_8c.html',1,'']]],
-  ['watch_5fx509_5fbundle_5fstep_2epy_1016',['watch_x509_bundle_step.py',['../watch__x509__bundle__step_8py.html',1,'']]],
-  ['watcher_2ec_1017',['watcher.c',['../watcher_8c.html',1,'']]],
-  ['watcher_2eh_1018',['watcher.h',['../watcher_8h.html',1,'']]]
+  ['verify_2ec_1076',['verify.c',['../verify_8c.html',1,'']]],
+  ['verify_2eh_1077',['verify.h',['../verify_8h.html',1,'']]]
 ];
