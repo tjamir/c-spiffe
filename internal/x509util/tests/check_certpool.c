@@ -1,4 +1,4 @@
-#include "internal/x509util/src/certpool.h"
+#include "c-spiffe/internal/x509util/certpool.h"
 #include <check.h>
 #include <openssl/pem.h>
 
@@ -37,17 +37,22 @@ START_TEST(test_x509util_CertPool_contains)
         }
     }
 
-    for(int i = 0, size = arrlen(certs); i < size; ++i) {
+    for(size_t i = 0, size = arrlenu(certs); i < size; ++i) {
         ck_assert(!x509util_CertPool_contains(cp, certs[i]));
     }
 
-    for(int i = 0, size = arrlen(certs); i < size; ++i) {
+    for(size_t i = 0, size = arrlenu(certs); i < size; ++i) {
         x509util_CertPool_AddCert(cp, certs[i]);
     }
 
-    for(int i = 0, size = arrlen(certs); i < size; ++i) {
+    for(size_t i = 0, size = arrlenu(certs); i < size; ++i) {
         ck_assert(x509util_CertPool_contains(cp, certs[i]));
     }
+
+    for(size_t i = 0, size = arrlenu(certs); i < size; ++i) {
+        X509_free(certs[i]);
+    }
+    arrfree(certs);
 
     BIO_free(bio_mem);
     x509util_CertPool_Free(cp);
@@ -63,7 +68,6 @@ Suite *certpool_suite(void)
 
     tcase_add_test(tc_core, test_x509util_CertPool_New);
     tcase_add_test(tc_core, test_x509util_CertPool_contains);
-    // tcase_add_test(tc_core, test_x509util_CertPool_findPotentialParents);
 
     return s;
 }

@@ -1,52 +1,57 @@
 package main
 
 import (
-	"crypto/tls"
+	"bufio"
+	"context"
+	"fmt"
 	"io"
 	"log"
 	"os"
+	"time"
+
+	"github.com/spiffe/go-spiffe/v2/spiffeid"
+	"github.com/spiffe/go-spiffe/v2/spiffetls"
+	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
+	"github.com/spiffe/go-spiffe/v2/workloadapi"
 )
 
 const (
-	CONN_HOST = "infra_workload_1"
-	CONN_PORT = "8000"
-	CONN_TYPE = "tcp"
+	socketPath = "unix:///tmp/agent.sock"
 )
 
 func main() {
-	cert, err := tls.LoadX509KeyPair("../certs/client.pem", "../certs/client.key")
+	// Setup context
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	// Allowed SPIFFE ID
+	//trust domain and workload id passed as arguments
+	spiffeID := spiffeid.Must(os.Args[4], os.Args[5])
+
+	//hostname and port for server passed as arguments
+	serverAddress := os.Args[2] + ":" + os.Args[3]
+
+	conn, err := spiffetls.DialWithMode(ctx, "tcp", serverAddress,
+		spiffetls.MTLSClientWithSourceOptions(
+			tlsconfig.AuthorizeID(spiffeID),
+			workloadapi.WithClientOptions(workloadapi.WithAddr(socketPath)),
+		))
 	if err != nil {
-		log.Fatalf("server: loadkeys: %s", err)
-	}
-	config := tls.Config{Certificates: []tls.Certificate{cert}, InsecureSkipVerify: true}
-	conn, err := tls.Dial(CONN_TYPE, CONN_HOST+":"+CONN_PORT, &config)
-	if err != nil {
-		log.Fatalf("client: dial: %s", err)
+		log.Fatalf("could not create TLS connection: %v", err)
 	}
 	defer conn.Close()
-	log.Println("client: connected to: ", conn.RemoteAddr())
-
-	state := conn.ConnectionState()
-	log.Println("client: handshake: ", state.HandshakeComplete)
-	log.Println("client: mutual: ", state.NegotiatedProtocolIsMutual)
 
 	//string argv will be sent as message
-	message := os.Args[1]
-	n, err := io.WriteString(conn, message)
-	if err != nil {
-		log.Fatalf("client: sent: %s", err)
+	message := os.Args[1] + "\n"
+	log.Printf("Client sent:     %q", message)
+
+	// Send a message to the server using the TLS connection
+	fmt.Fprint(conn, message)
+
+	// Read server response
+	status, err := bufio.NewReader(conn).ReadString('\n')
+	if err != nil && err != io.EOF {
+		log.Fatalf("Unable to read server response: %v", err)
 	}
-	log.Printf("client: sent     %q (%d bytes)", message, n)
-
-	reply := make([]byte, 100)
-	n, err = conn.Read(reply)
-	if err != nil {
-		if err != io.EOF {
-			log.Printf("client: read: %s", err)
-		}
-	}
-
-	log.Printf("client: received %q (%d bytes)\n", string(reply[:n]), n)
-
-	log.Print("client: exiting")
+	log.Printf("Server replied: %q", status)
 }
