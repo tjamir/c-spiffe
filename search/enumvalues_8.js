@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['x509bundle_5fbundle_1715',['X509BUNDLE_BUNDLE',['../structx509bundle__Source.html#aaa1bac005ce96754442b285b5bc02298ab5e923c4accb38aebb949e3a2af9635b',1,'x509bundle_Source']]],
-  ['x509bundle_5fset_1716',['X509BUNDLE_SET',['../structx509bundle__Source.html#aaa1bac005ce96754442b285b5bc02298ad5893f792281271effb4e00f22a9878e',1,'x509bundle_Source']]],
-  ['x509bundle_5fworkloadapi_5fx509source_1717',['X509BUNDLE_WORKLOADAPI_X509SOURCE',['../structx509bundle__Source.html#aaa1bac005ce96754442b285b5bc02298af3b929de980f176418b74a1034bd301f',1,'x509bundle_Source']]],
-  ['x509svid_5fsvid_1718',['X509SVID_SVID',['../structx509svid__Source.html#aa22d29f7e75deaf697975d2d1a697d3da47471c32960afd59a15c2830e13c940a',1,'x509svid_Source']]],
-  ['x509svid_5fworkloadapi_5fx509source_1719',['X509SVID_WORKLOADAPI_X509SOURCE',['../structx509svid__Source.html#aa22d29f7e75deaf697975d2d1a697d3da308968269d04213bdf84a9627052d310',1,'x509svid_Source']]]
+  ['spiffebundle_5fbundle_2079',['SPIFFEBUNDLE_BUNDLE',['../structspiffebundle__Source.html#a8dd1e1b389108472b363c9c60b165a68af09d25eca7d23d0c803f405e25e9f157',1,'spiffebundle_Source']]],
+  ['spiffebundle_5fendpoint_2080',['SPIFFEBUNDLE_ENDPOINT',['../structspiffebundle__Source.html#a8dd1e1b389108472b363c9c60b165a68a1db2f13d0f4c859a7f2d490c353d4fa7',1,'spiffebundle_Source']]],
+  ['spiffebundle_5fset_2081',['SPIFFEBUNDLE_SET',['../structspiffebundle__Source.html#a8dd1e1b389108472b363c9c60b165a68adaeeddb3de1c5b9be6919d773bfbb1fc',1,'spiffebundle_Source']]],
+  ['stbds_5fsh_5farena_2082',['STBDS_SH_ARENA',['../stb__ds_8h.html#abed82baf7f470b522273a3e37c24c600acc00a7d3e35d4cf49876ccd28090d822',1,'stb_ds.h']]],
+  ['stbds_5fsh_5fdefault_2083',['STBDS_SH_DEFAULT',['../stb__ds_8h.html#abed82baf7f470b522273a3e37c24c600a8e3b6ebef25ad0cd1671d1907f674b33',1,'stb_ds.h']]],
+  ['stbds_5fsh_5fnone_2084',['STBDS_SH_NONE',['../stb__ds_8h.html#abed82baf7f470b522273a3e37c24c600a59182471de92e24b86ffad093024442a',1,'stb_ds.h']]],
+  ['stbds_5fsh_5fstrdup_2085',['STBDS_SH_STRDUP',['../stb__ds_8h.html#abed82baf7f470b522273a3e37c24c600a0f3b4e19006b798f5f57bb959fa436a7',1,'stb_ds.h']]]
 ];

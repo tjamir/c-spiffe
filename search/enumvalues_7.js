@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['tls_5fclient_5fmode_1712',['TLS_CLIENT_MODE',['../mode_8h.html#a8a655dfcca53fbd030e1600104da3b8aa7efd2938d1facb448885c6a2463ec9d1',1,'mode.h']]],
-  ['tls_5fserver_5fmode_1713',['TLS_SERVER_MODE',['../mode_8h.html#a0865f9bb6b2d685b5229b6e5c63085f5ac418bc63dcf829cd42cae1bcd795ab3d',1,'mode.h']]],
-  ['tlsconfig_5ffunc_1714',['TLSCONFIG_FUNC',['../structtlsconfig__Option.html#a931dfcf46f422481bae47a5808b48e98ad870511b5a32cdb7f9a144c246b1ab8c',1,'tlsconfig_Option']]]
+  ['no_5ferror_2077',['NO_ERROR',['../error_8h.html#a7e02898e99df1995ce7f4edc41644f59abf350750d0d4fabd8954c0f1e9bbae94',1,'error.h']]],
+  ['none_2078',['NONE',['../endpoint_8h.html#aa940ea32ff440076df24fd16b6998c18ac157bdf0b85a40d2619cbc8bc1ae5fe2',1,'endpoint.h']]]
 ];

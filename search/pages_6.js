@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['run_20go_2decho_2dserver_1859',['Run go-echo-server',['../md_integration_test_helpers_go_echo_server_README.html',1,'']]]
+  ['minimal_20installation_2234',['Minimal Installation',['../md_MINOR_INSTALLATION.html',1,'']]],
+  ['mutually_20authenticated_20tls_20_28mtls_29_2235',['Mutually Authenticated TLS (mTLS)',['../md_examples_spiffe_tls_README.html',1,'']]]
 ];
